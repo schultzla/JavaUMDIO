@@ -1,37 +1,39 @@
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 /**
  * Created by loganschultz on 1/3/18.
  *
- * Create this object to search for a course within the bounds
+ * Creates a map of all the courses available the current semester at UMD
  */
 public class CourseSearch {
 
-    private ArrayList<Course> allCourses;
+    private TreeMap<String, BasicCourse> courses;
 
-    /*
-    List all courses
-     */
     public CourseSearch() {
+
         String json = null;
 
         try {
-            json = new JsonReader("http://api.umd" +
-                    ".io/v0/courses/list").readUrl();
+            json = new JsonReader("http://api.umd.io/v0/courses/list")
+                    .readUrl();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        allCourses = new Gson().fromJson(json, new
-                TypeToken<ArrayList<Course>>(){}.getType());
+        ArrayList<BasicCourse> allCourses = new Gson().fromJson(json, new
+                TypeToken<ArrayList<BasicCourse>>(){}.getType());
+
+        courses = new TreeMap<>();
+
+        for (BasicCourse c : allCourses) {
+            courses.put(c.course_id, c);
+        }
     }
 
-    /*
-    Get list of all courses
-     */
-    public ArrayList<Course> getCourses() {
-        return allCourses;
+    public TreeMap<String, BasicCourse> getCourses() {
+        return courses;
     }
 }
