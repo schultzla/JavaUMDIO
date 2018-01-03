@@ -5,7 +5,7 @@ import java.net.URL;
 /**
  * Created by loganschultz on 1/3/18.
  *
- * Read json data from URL
+ * Read json data from URL, try not to mess with
  */
 public class JsonReader {
 
@@ -15,6 +15,11 @@ public class JsonReader {
         urlString = url;
     }
 
+    /**
+     * Read JSON data from a URL, try not to mess with
+     * @return
+     * @throws Exception
+     */
     public String readUrl() throws Exception {
         BufferedReader reader = null;
         try {

@@ -6,8 +6,9 @@ public class Driver {
     public static void main(String[] args) {
         CourseSearch temp = new CourseSearch();
 
-        AdvancedCourse test = temp.getCourses().get("CMSC132").getMore();
+        for (String s : temp.getDepartmentCourses("CMSC").keySet()) {
+            System.out.println(s);
+        }
 
-        System.out.println(test.semester);
     }
 }

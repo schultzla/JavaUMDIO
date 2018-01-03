@@ -6,12 +6,16 @@ import java.util.TreeMap;
 /**
  * Created by loganschultz on 1/3/18.
  *
- * Creates a map of all the courses available the current semester at UMD
+ * Main wrapper object. Initiate CourseSearch with no params to get methods
  */
 public class CourseSearch {
 
     private TreeMap<String, BasicCourse> courses;
 
+    /**
+     * Initiate's courses map with every possible course, with only basic
+     * information
+     */
     public CourseSearch() {
 
         String json = null;
@@ -33,7 +37,31 @@ public class CourseSearch {
         }
     }
 
-    public TreeMap<String, BasicCourse> getCourses() {
-        return courses;
+    /**
+     * Get a specific course (Use .getMore() on Course to get all information)
+     * @param Course ID
+     * @return Course object
+     */
+    public BasicCourse getCourse(String courseId) {
+        return courses.get(courseId);
     }
+
+    /**
+     * Get a map of courses in a department
+     * @param Department ID (e.g. 'CMSC')
+     * @return TreeMap of course IDs and Course objects
+     */
+    public TreeMap<String, BasicCourse> getDepartmentCourses(String dept) {
+        TreeMap<String, BasicCourse> map = new TreeMap<>();
+
+        for (BasicCourse c : courses.values()) {
+            if (c.course_id.contains(dept)) {
+                map.put(c.course_id, c);
+            }
+        }
+
+        return map;
+    }
+
+
 }

@@ -11,9 +11,9 @@ public class BasicCourse {
 
     String course_id, name, department;
 
-    /*
-    Get all possible information about the course, returns an Advanced Course
-    object
+    /**
+     * Get full information about the course
+     * @return New course with all potential information
      */
     public AdvancedCourse getMore() {
         String json = null;
