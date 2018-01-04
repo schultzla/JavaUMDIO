@@ -1,5 +1,7 @@
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
@@ -86,17 +88,29 @@ public class CourseSearch {
      * @return map of courses
      */
     private TreeMap getCourses(String params) {
-        String json = null;
+        StringBuffer json = new StringBuffer();
+        ArrayList<BasicCourse> allCourses = new ArrayList<>();
 
         try {
-            json = new JsonReader("http://api.umd.io/v0/courses?" + params)
-                    .readUrl();
+            int i = 1;
+            while (true) {
+                json.append(new JsonReader("http://api.umd" +
+                        ".io/v0/courses?per_page=100&page=" + i + "&" + params)
+                        .readUrl());
+                allCourses.addAll(new Gson().fromJson(json.toString().replace
+                                ("][", ","),
+                        new TypeToken<ArrayList<BasicCourse>>(){}.getType()));
+                if (allCourses.size() % 100 == 0) {
+                    i++;
+                    continue;
+                } else {
+                    break;
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        ArrayList<BasicCourse> allCourses = new Gson().fromJson(json, new
-                TypeToken<ArrayList<BasicCourse>>(){}.getType());
 
         TreeMap<String, BasicCourse> genCourses = new TreeMap<>();
 
