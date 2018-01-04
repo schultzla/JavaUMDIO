@@ -7,6 +7,6 @@ public class AdvancedCourse {
 
     String course_id, name, dept_id, department, semester, credits, description;
 
-    String[] grading_method, core, gen_ed;
+    String[] grading_method, core, gen_ed, sections;
 
 }

@@ -1,7 +1,5 @@
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
@@ -89,6 +87,25 @@ public class CourseSearch {
      */
     public TreeMap<String, BasicCourse> getSemesterCourses(String semester) {
         return getCourses("semester=" + semester);
+    }
+
+    /**
+     * Get section info
+     * @param sectionId
+     * @return section object with all available information
+     */
+    public Section getSectionInfo(String sectionId) {
+        String json = null;
+
+        try {
+            json = new JsonReader("http://api.umd.io/v0/courses/sections/" +
+                    sectionId)
+                    .readUrl();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return new Gson().fromJson(json, Section.class);
     }
 
     /**

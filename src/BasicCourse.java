@@ -26,6 +26,10 @@ public class BasicCourse {
             e.printStackTrace();
         }
 
+        /*
+        I have no idea why I have to use an ArrayList here instead of just
+        returning a Gson object itself but it works so don't touch
+         */
        ArrayList<AdvancedCourse> temp = new Gson().fromJson(json, new
                 TypeToken<ArrayList<AdvancedCourse>>(){}.getType());
 

@@ -8,10 +8,10 @@ public class Driver {
     public static void main(String[] args) {
         CourseSearch temp = new CourseSearch();
 
-        Map<String, BasicCourse> map = temp.getSemesterCourses("201708");
+        Section test = temp.getSectionInfo("CMSC132-0101");
 
-        for (String s : map.keySet()) {
-            System.out.println(s);
+        for (Meetings m : test.meetings) {
+            System.out.println(m.days);
         }
     }
 }
