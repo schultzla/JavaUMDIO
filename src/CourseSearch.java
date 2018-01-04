@@ -83,11 +83,22 @@ public class CourseSearch {
     }
 
     /**
-     * Private helper method to get map of courses based on params
+     * Get courses by semester
+     * @param semester
+     * @return
+     */
+    public TreeMap<String, BasicCourse> getSemesterCourses(String semester) {
+        return getCourses("semester=" + semester);
+    }
+
+    /**
+     * Method to get courses by custom parameters. Examples of possible
+     * params would be "gen_ed=SCIS|DSSP", "dept_id=CMSC&semester=201801".
+     * This is technically a helper method so be careful using this
      * @param params
      * @return map of courses
      */
-    private TreeMap getCourses(String params) {
+    public TreeMap getCourses(String params) {
         StringBuffer json = new StringBuffer();
         ArrayList<BasicCourse> allCourses = new ArrayList<>();
 
