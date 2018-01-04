@@ -39,7 +39,7 @@ public class CourseSearch {
 
     /**
      * Get a specific course (Use .getMore() on Course to get all information)
-     * @param Course ID
+     * @param courseId
      * @return Course object
      */
     public BasicCourse getCourse(String courseId) {
@@ -48,7 +48,7 @@ public class CourseSearch {
 
     /**
      * Get a map of courses in a department
-     * @param Department ID (e.g. 'CMSC')
+     * @param dept departmentID (e.g. 'CMSC')
      * @return TreeMap of course IDs and Course objects
      */
     public TreeMap<String, BasicCourse> getDepartmentCourses(String dept) {
@@ -63,5 +63,48 @@ public class CourseSearch {
         return map;
     }
 
+    /**
+     * Get a map of courses that satisfy certain gen ed requirements
+     * @param genEds array of geneds want to satisfy
+     * @return TreeMap of course IDs and course objects
+     */
+    public TreeMap<String, BasicCourse> getGenEndCourses(String[] genEds) {
+
+        StringBuffer gen = new StringBuffer();
+        for (String s : genEds) {
+            gen.append(s);
+            gen.append("|");
+        }
+        gen.deleteCharAt(gen.length() - 1);
+
+       return getCourses("gen_ed=" + gen.toString());
+    }
+
+    /**
+     * Private helper method to get map of courses based on params
+     * @param params
+     * @return map of courses
+     */
+    private TreeMap getCourses(String params) {
+        String json = null;
+
+        try {
+            json = new JsonReader("http://api.umd.io/v0/courses?" + params)
+                    .readUrl();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<BasicCourse> allCourses = new Gson().fromJson(json, new
+                TypeToken<ArrayList<BasicCourse>>(){}.getType());
+
+        TreeMap<String, BasicCourse> genCourses = new TreeMap<>();
+
+        for (BasicCourse c : allCourses) {
+            genCourses.put(c.course_id, c);
+        }
+
+        return genCourses;
+    }
 
 }
