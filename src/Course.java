@@ -1,5 +1,6 @@
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
 
 /**
@@ -7,9 +8,9 @@ import java.util.ArrayList;
  *
  * Basic Course object, only contains the ID, name, and department
  */
-public class BasicCourse {
+public class Course {
 
-    String course_id, name, department;
+    private String course_id, name, department;
 
     /**
      * Get full information about the course
@@ -36,4 +37,15 @@ public class BasicCourse {
         return temp.get(0);
     }
 
+    public String getCourseId() {
+        return course_id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
 }

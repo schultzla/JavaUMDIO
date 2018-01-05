@@ -3,9 +3,41 @@
  */
 public class Section {
 
-    String section_id, course, seats, semester, open_seats, waitlist;
+    private String section_id, course, seats, semester, open_seats, waitlist;
 
-    String[] instructors;
+    private String[] instructors;
 
-    Meetings[] meetings;
+    private Meetings[] meetings;
+
+    public String getSectionId() {
+        return section_id;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public String getSeats() {
+        return seats;
+    }
+
+    public String getSemester() {
+        return semester;
+    }
+
+    public String getOpenSeats() {
+        return open_seats;
+    }
+
+    public String getWaitlist() {
+        return waitlist;
+    }
+
+    public String[] getInstructors() {
+        return instructors;
+    }
+
+    public Meetings[] getMeetings() {
+        return meetings;
+    }
 }

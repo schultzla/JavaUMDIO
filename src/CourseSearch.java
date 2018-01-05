@@ -1,5 +1,6 @@
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
 import java.util.TreeMap;
 
@@ -10,7 +11,7 @@ import java.util.TreeMap;
  */
 public class CourseSearch {
 
-    private TreeMap<String, BasicCourse> courses;
+    private TreeMap<String, Course> courses;
 
     /**
      * Initiate's courses map with every possible course, with only basic
@@ -27,13 +28,13 @@ public class CourseSearch {
             e.printStackTrace();
         }
 
-        ArrayList<BasicCourse> allCourses = new Gson().fromJson(json, new
-                TypeToken<ArrayList<BasicCourse>>(){}.getType());
+        ArrayList<Course> allCourses = new Gson().fromJson(json, new
+                TypeToken<ArrayList<Course>>(){}.getType());
 
         courses = new TreeMap<>();
 
-        for (BasicCourse c : allCourses) {
-            courses.put(c.course_id, c);
+        for (Course c : allCourses) {
+            courses.put(c.getCourseId(), c);
         }
     }
 
@@ -42,7 +43,7 @@ public class CourseSearch {
      * @param courseId
      * @return Course object
      */
-    public BasicCourse getCourse(String courseId) {
+    public Course getCourse(String courseId) {
         return courses.get(courseId);
     }
 
@@ -51,12 +52,12 @@ public class CourseSearch {
      * @param dept departmentID (e.g. 'CMSC')
      * @return TreeMap of course IDs and Course objects
      */
-    public TreeMap<String, BasicCourse> getDepartmentCourses(String dept) {
-        TreeMap<String, BasicCourse> map = new TreeMap<>();
+    public TreeMap<String, Course> getDepartmentCourses(String dept) {
+        TreeMap<String, Course> map = new TreeMap<>();
 
-        for (BasicCourse c : courses.values()) {
-            if (c.course_id.contains(dept)) {
-                map.put(c.course_id, c);
+        for (Course c : courses.values()) {
+            if (c.getCourseId().contains(dept)) {
+                map.put(c.getCourseId(), c);
             }
         }
 
@@ -68,7 +69,7 @@ public class CourseSearch {
      * @param genEds array of geneds want to satisfy
      * @return TreeMap of course IDs and course objects
      */
-    public TreeMap<String, BasicCourse> getGenEndCourses(String[] genEds) {
+    public TreeMap<String, Course> getGenEndCourses(String[] genEds) {
 
         StringBuffer gen = new StringBuffer();
         for (String s : genEds) {
@@ -85,7 +86,7 @@ public class CourseSearch {
      * @param semester
      * @return
      */
-    public TreeMap<String, BasicCourse> getSemesterCourses(String semester) {
+    public TreeMap<String, Course> getSemesterCourses(String semester) {
         return getCourses("semester=" + semester);
     }
 
@@ -116,18 +117,20 @@ public class CourseSearch {
      * @return map of courses
      */
     public TreeMap getCourses(String params) {
+
         StringBuffer json = new StringBuffer();
-        ArrayList<BasicCourse> allCourses = new ArrayList<>();
+        ArrayList<Course> allCourses = new ArrayList<>();
 
         try {
+
             int i = 1;
             while (true) {
-                json.append(new JsonReader("http://api.umd" +
-                        ".io/v0/courses?per_page=100&page=" + i + "&" + params)
-                        .readUrl());
+                json.append(new JsonReader("http://api.umd.io/v0/courses?per_page=100&page=" + i + "&" + params).readUrl());
+
                 allCourses.addAll(new Gson().fromJson(json.toString().replace
                                 ("][", ","),
-                        new TypeToken<ArrayList<BasicCourse>>(){}.getType()));
+                        new TypeToken<ArrayList<Course>>(){}.getType()));
+
                 if (allCourses.size() % 100 == 0) {
                     i++;
                     continue;
@@ -140,10 +143,10 @@ public class CourseSearch {
         }
 
 
-        TreeMap<String, BasicCourse> genCourses = new TreeMap<>();
+        TreeMap<String, Course> genCourses = new TreeMap<>();
 
-        for (BasicCourse c : allCourses) {
-            genCourses.put(c.course_id, c);
+        for (Course c : allCourses) {
+            genCourses.put(c.getCourseId(), c);
         }
 
         return genCourses;

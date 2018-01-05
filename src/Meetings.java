@@ -6,5 +6,29 @@
  */
 public class Meetings {
 
-    String days, start_time, end_time, building, room, classtype;
+    private String days, start_time, end_time, building, room, classtype;
+
+    public String getDays() {
+        return days;
+    }
+
+    public String getStartTime() {
+        return start_time;
+    }
+
+    public String getEndTime() {
+        return end_time;
+    }
+
+    public String getBuilding() {
+        return building;
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public String getClasstype() {
+        return classtype;
+    }
 }
