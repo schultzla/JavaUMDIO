@@ -8,7 +8,7 @@ The API (umd.io) gives users the ability to get course information, busses, camp
 
 ## Current Features
 
-* Search courses by course ID and department ID
+* Search courses by various pre-set parameters, also giving the ability for custom parameters
 * Get all available information about a course
 
 ## Getting Started
@@ -24,9 +24,10 @@ Then the various methods to get the course information will be in the javadoc lo
 
 ## TODO
 
-* Add search by semester, geneds, and other various parameters
+* Add more searchable params
+* Add building API functionality
+* Add professor API functionality
 * Build final JAR once most of the API function has been fulfilled
-* Add javadoc
 
 ## Built With
 
