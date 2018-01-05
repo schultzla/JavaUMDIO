@@ -1,5 +1,8 @@
 /**
  * Created by loganschultz on 1/4/18.
+ *
+ * Sections contain information each section in a course. Also contains an
+ * array of Meetings, which are the time and location constraints
  */
 public class Section {
 

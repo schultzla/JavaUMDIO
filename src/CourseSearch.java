@@ -116,7 +116,7 @@ public class CourseSearch {
      * @param params
      * @return map of courses
      */
-    public TreeMap getCourses(String params) {
+    public TreeMap<String, Course> getCourses(String params) {
 
         StringBuffer json = new StringBuffer();
         ArrayList<Course> allCourses = new ArrayList<>();

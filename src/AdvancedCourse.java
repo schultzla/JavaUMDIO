@@ -10,6 +10,10 @@ public class AdvancedCourse {
 
     private String[] grading_method, core, gen_ed, sections;
 
+    /**
+     * Get the sections of a course
+     * @return array of Section objects
+     */
     public Section[] getSections() {
         Section[] ans = new Section[sections.length];
 
