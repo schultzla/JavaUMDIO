@@ -125,7 +125,11 @@ public class CourseSearch {
 
             int i = 1;
             while (true) {
-                json.append(new JsonReader("http://api.umd.io/v0/courses?per_page=100&page=" + i + "&" + params).readUrl());
+                if (params == null) {
+                    json.append(new JsonReader("http://api.umd.io/v0/courses?per_page=100&page=" + i).readUrl());
+                } else {
+                    json.append(new JsonReader("http://api.umd.io/v0/courses?per_page=100&page=" + i + "&" + params).readUrl());
+                }
 
                 allCourses.addAll(new Gson().fromJson(json.toString().replace
                                 ("][", ","),
@@ -150,6 +154,49 @@ public class CourseSearch {
         }
 
         return genCourses;
+    }
+
+    public TreeMap<String, Professor> getProfessors(String params) {
+
+        StringBuffer json = new StringBuffer();
+        ArrayList<Professor> allProfessors = new ArrayList<>();
+
+        try {
+
+            int i = 1;
+            while (true) {
+                if (params == null) {
+                    json.append(new JsonReader("http://api.umd" +
+                            ".io/v0/professors?per_page=100&page=" + i).readUrl());
+                } else {
+                    json.append(new JsonReader("http://api.umd" +
+                            ".io/v0/professors?per_page=100&page=" + i + "&" +
+                            params).readUrl());
+                }
+
+                allProfessors.addAll(new Gson().fromJson(json.toString().replace
+                                ("][", ","),
+                        new TypeToken<ArrayList<Professor>>(){}.getType()));
+
+                if (allProfessors.size() % 100 == 0) {
+                    i++;
+                    continue;
+                } else {
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        TreeMap<String, Professor> genProfessors = new TreeMap<>();
+
+        for (Professor p : allProfessors) {
+            genProfessors.put(p.getName(), p);
+        }
+
+        return genProfessors;
     }
 
 }
