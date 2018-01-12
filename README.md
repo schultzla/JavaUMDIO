@@ -10,6 +10,7 @@ The API (umd.io) gives users the ability to get course information, busses, camp
 
 * Search courses by various pre-set parameters, also giving the ability for custom parameters
 * Get all available information about a course
+* Get courses by professor
 
 ## Getting Started
 
@@ -20,13 +21,12 @@ However, below is the code to get started
 CourseSearch search = new CourseSearch();
 ```
 
-Then the various methods to get the course information will be in the javadoc located here (TODO)
+Then the various methods to get the course information will be in the javadoc located [here](https://schultzla.github.io/JavaUMDIO/docs/)
 
 ## TODO
 
 * Add more searchable params
 * Add building API functionality
-* Add professor API functionality
 * Build final JAR once most of the API function has been fulfilled
 
 ## Built With
