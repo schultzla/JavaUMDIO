@@ -156,6 +156,51 @@ public class CourseSearch {
         return genCourses;
     }
 
+    /**
+     * Get a map via professor search.
+     * @param professor in format "First Last"
+     * @return
+     */
+    public TreeMap<String, Course> getCourseByProfessor(String professor) {
+        TreeMap<String, Professor> prof = getProfessors(null);
+        TreeMap<String, Course> fin = new TreeMap<>();
+
+        for (String s : prof.keySet()) {
+            if (s.equals(professor)) {
+                fin = prof.get(s).getCourses();
+            }
+        }
+
+        return fin;
+    }
+
+    /**
+     * Get a map via professor search using only LAST name
+     * @param professor in format "Last"
+     * @return
+     */
+
+    public TreeMap<String, Course> getCourseByProfessorLastName(String professor) {
+        TreeMap<String, Professor> prof = getProfessors(null);
+        TreeMap<String, Course> fin = new TreeMap<>();
+
+        for (String s : prof.keySet()) {
+            int temp = s.indexOf(" ");
+
+            if (s.substring(temp + 1, s.length()).equals(professor)) {
+                fin = prof.get(s).getCourses();
+            }
+        }
+
+        return fin;
+    }
+
+    /**
+     * Get a map of all professors, add custom params to search. Add params
+     * at your own risk, there are only certain things you can add
+     * @param params
+     * @return
+     */
     public TreeMap<String, Professor> getProfessors(String params) {
 
         StringBuffer json = new StringBuffer();

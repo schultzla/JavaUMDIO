@@ -8,12 +8,11 @@ public class Driver {
     public static void main(String[] args) {
         CourseSearch temp = new CourseSearch();
 
-        TreeMap<String, Professor> test = temp.getProfessors(null);
+        TreeMap<String, Course> map = temp.getCourseByProfessorLastName("Emad");
 
-        for (String s : test.keySet()) {
-            System.out.println(s);
+        for (String s : map.keySet()) {
+            System.out.println(map.get(s).getName());
         }
-
 
     }
 }
