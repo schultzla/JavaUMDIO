@@ -1,3 +1,5 @@
+import java.util.TreeMap;
+
 /**
  * Created by loganschultz on 1/11/18.
  */
@@ -5,23 +7,29 @@ public class Professor {
 
     private String name;
 
-    //private String[] departments;
+    private String[] departments;
 
-    //private Course[] courses;
+    private String[] courses;
 
     public String getName() {
         return name;
     }
 
-    /*public String getSemester() {
-        return semester;
-    }*/
-
-    /*public String[] getDepartments() {
+    public String[] getDepartments() {
         return departments;
-    }*/
+    }
 
-    /*public Course[] getCourses() {
-        return courses;
-    }*/
+    /**
+     * Gets the professors courses
+     * @return map of courses
+     */
+    public TreeMap<String, Course> getCourses() {
+        TreeMap<String, Course> temp = new TreeMap<>();
+
+        for (String s : courses) {
+            temp.put(s, new CourseSearch().getCourse(s));
+        }
+
+        return temp;
+    }
 }
