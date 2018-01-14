@@ -21,7 +21,7 @@ However, below is the code to get started
 CourseSearch search = new CourseSearch();
 ```
 
-Then the various methods to get the course information will be in the javadoc located [here](https://schultzla.github.io/JavaUMDIO/docs/)
+Then the various methods to get the course information will be in the javadoc located [here](https://schultzla.github.io/JavaUMDIO/)
 
 ## TODO
 
