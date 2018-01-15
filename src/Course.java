@@ -2,6 +2,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 /**
  * Created by loganschultz on 1/3/18.
@@ -35,6 +36,23 @@ public class Course {
                 TypeToken<ArrayList<AdvancedCourse>>(){}.getType());
 
         return temp.get(0);
+    }
+
+    /**
+     * Get the professors teaching this course
+     * @return list of professors
+     */
+    public ArrayList<Professor> getProfessors() {
+        TreeMap<String, Professor> professors = new CourseSearch().getProfessors
+                ("courses=" +
+                course_id);
+
+        ArrayList<Professor> finProf = new ArrayList<>();
+        for (Professor p : professors.values()) {
+            finProf.add(p);
+        }
+
+        return finProf;
     }
 
     public String getCourseId() {

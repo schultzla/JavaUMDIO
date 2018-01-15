@@ -157,12 +157,21 @@ public class CourseSearch {
     }
 
     /**
+     * Get professors for a specific course
+     * @param courseId
+     * @return
+     */
+    public ArrayList<Professor> getProfessors(String courseId) {
+        return getCourse(courseId).getProfessors();
+    }
+
+    /**
      * Get a map via professor search.
      * @param professor in format "First Last"
      * @return
      */
     public TreeMap<String, Course> getCourseByProfessor(String professor) {
-        TreeMap<String, Professor> prof = getProfessors(null);
+        TreeMap<String, Professor> prof = getAllProfessors(null);
         TreeMap<String, Course> fin = new TreeMap<>();
 
         for (String s : prof.keySet()) {
@@ -181,7 +190,7 @@ public class CourseSearch {
      */
 
     public TreeMap<String, Course> getCourseByProfessorLastName(String professor) {
-        TreeMap<String, Professor> prof = getProfessors(null);
+        TreeMap<String, Professor> prof = getAllProfessors(null);
         TreeMap<String, Course> fin = new TreeMap<>();
 
         for (String s : prof.keySet()) {
@@ -201,7 +210,7 @@ public class CourseSearch {
      * @param params
      * @return
      */
-    public TreeMap<String, Professor> getProfessors(String params) {
+    public TreeMap<String, Professor> getAllProfessors(String params) {
 
         StringBuffer json = new StringBuffer();
         ArrayList<Professor> allProfessors = new ArrayList<>();
