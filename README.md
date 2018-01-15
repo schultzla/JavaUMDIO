@@ -6,6 +6,10 @@ A Java wrapper for the umd.io API wrapper
 
 The API (umd.io) gives users the ability to get course information, busses, campus locations, and other various information for UMD. I'm in the process of creating a Java wrapper for all of this information. This is a large project, and features will be added continuously.
 
+## How To Implement
+
+The jar is above in the repostiory (JavaUMDIO.jar). Add it as a dependency, and you will be able to use it. It is version 1.0 currently, it may not be updated with the newest features, however I will progressively rebuild it. Anything I add to the API from here on out will not be major, as most major functions have been added to the API. As of now, the only things you cannot do that the umd.io API can do is get bus and building information. All course and professor information should be accessible through the functions. Thanks!
+
 ## Current Features
 
 * Search courses by various pre-set parameters, also giving the ability for custom parameters
@@ -14,9 +18,6 @@ The API (umd.io) gives users the ability to get course information, busses, camp
 
 ## Getting Started
 
-As of right now, I haven't built the JAR or added a way to easily take advantage of the wrapper as this is still heavily in development. However, you can follow the process here
-
-However, below is the code to get started
 ```
 CourseSearch search = new CourseSearch();
 ```
@@ -27,7 +28,6 @@ Then the various methods to get the course information will be in the javadoc lo
 
 * Add more searchable params
 * Add building API functionality
-* Build final JAR once most of the API function has been fulfilled
 
 ## Built With
 
