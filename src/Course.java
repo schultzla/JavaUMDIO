@@ -43,7 +43,8 @@ public class Course {
      * @return list of professors
      */
     public ArrayList<Professor> getProfessors() {
-        TreeMap<String, Professor> professors = new CourseSearch().getProfessors
+        TreeMap<String, Professor> professors = new CourseSearch()
+                .getAllProfessors
                 ("courses=" +
                 course_id);
 
